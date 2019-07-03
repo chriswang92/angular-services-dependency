@@ -13,6 +13,9 @@ export class NewAccountComponent {
 
   constructor(private loggingService: LoggingService, private accountsService: AccountsService) {
     // This informs Angular that you want this service in this component, and angular will instantiate this service for you
+    this.accountsService.statusUpdated.subscribe(
+      (status: string) => alert('New Status: ' + status)
+    );
   }
 
   onCreateAccount(accountName: string, accountStatus: string) {

@@ -1,8 +1,8 @@
 
-import { Injectable } from "@angular/core";
-import { LoggingService } from "./logging.service";
+import { Injectable, EventEmitter } from "@angular/core";
+import { LoggingService } from "./logging.service"; // Inject another service into this service
 
-@Injectable() // This informs angular that this is a receiving service( can inject things to this), only add this if you intend to inject something here
+@Injectable({providedIn: 'root'}) // This informs angular that this is a receiving service( can inject things to this), only add this if you intend to inject something here
 export class AccountsService {
     accounts = [
         {
@@ -18,6 +18,8 @@ export class AccountsService {
             status: 'unknown'
         }
     ];
+
+    statusUpdated = new EventEmitter<string>();
 
     constructor(private loggingService: LoggingService) {}
 
